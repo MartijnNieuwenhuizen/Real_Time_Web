@@ -1,4 +1,4 @@
-var users = [
+let users = [
 	{
 		name: 'Martijn',
 		'gardenName': 'Admiraal'

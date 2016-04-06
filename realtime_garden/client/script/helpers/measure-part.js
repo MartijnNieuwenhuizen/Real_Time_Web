@@ -1,4 +1,4 @@
-var measureItem = [
+let measureItem = [
 	{
 		title: 'Temperature',
 

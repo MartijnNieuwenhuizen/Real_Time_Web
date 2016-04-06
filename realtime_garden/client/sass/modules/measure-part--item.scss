@@ -1,0 +1,13 @@
+.measure-part--item {
+	display: inline-block;
+	width: 100%;
+	max-height: 30vh;
+	
+	margin: 0;
+	background-color: gray;
+}
+@media( min-width: 600px ) {
+	.measure-part--item {
+		width: 50%;
+	}
+}
