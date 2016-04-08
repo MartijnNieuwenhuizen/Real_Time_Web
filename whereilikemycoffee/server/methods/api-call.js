@@ -3,7 +3,7 @@ Meteor.methods({
 	apiCall: function() {
 
 		this.unblock(); // Don't let it be a Blocking Js Call
-
+		
 		// Create Url
 		var apiUrl;
 		var url = {
