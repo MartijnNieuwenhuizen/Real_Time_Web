@@ -1,23 +1,16 @@
-# Real Time Web
-## Where I Like My Coffee
-Where I Like My Coffee is an app that shows you the best coffee places in town according to fellow coffee enthusiasts.
-In this branch, the Core idea or USP is "Show the best places in the town your in" is developed.
+# The Core Feature
+In this branch, the Core idea or USP "Show the best places in the town your in" is developed.
 
-### ToDo
-So this is what needs to be done:
-
-**HTML**
-
+## ToDo
+### HTML
 * Create a template (places-list) who shows all the cofffeespots.
 * Create a template (places-list--item) which contains a single coffeespot.
 
-**CSS**
-
+### CSS
 * create a matching places-list.scss and style the list
 * create a places-list--item.scss and style a single item
 
-**JS**
-
+### JS
 * Get data from the FourSquere API, for Amsterdam
 * Create a matching places-list.js and render all the data
 
