@@ -1,1 +1,1 @@
-Places = new Mongo.Collection('now-popular');
+Places = new Mongo.Collection('places');
