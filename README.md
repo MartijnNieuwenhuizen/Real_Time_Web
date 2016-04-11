@@ -25,7 +25,6 @@ In this branch, the Core idea or USP "Show the best places in the town your in" 
 * html/templates/place-list.html
 * html/templates/place-list-item.html
 * html/templates/place-list.js
-
 * sass/mosules/place-list.scss
 * sass/mosules/place-list-item.scss
 
