@@ -1,34 +1,29 @@
-<<<<<<< HEAD
 # The Core Feature
-In this branch, the Core idea or USP "Show the best places in the town your in" is developed.
+In this branch, the real time checkin is created.
 
 ## ToDo
 ### HTML
-* ~~Create a template (places-list) who shows all the cofffeespots.~~
-* ~~Create a template (places-list--item) which contains a single coffeespot.~~
+* Create templates:
+	* List to add checked in items
+	* Loop thrue all realtime Checkins
 
 ### CSS
-* ~~create a matching places-list.scss and style the list~~
-* ~~create a places-list--item.scss and style a single item~~
+* Style the list
+* Style the list-items
 
 ### JS
-* ~~Get data from the FourSquere API, for Amsterdam~~
-* ~~Create a matching places-list.js and render all the data~~
+* Get checkins in the neighborhood from the Twitter API
+* Get checkins in the neighborhood from the Instagram API
+* Get checkins in the neighborhood from the Facebook API
+
+* Render Data
 
 #### Later
-* Make a form to send your Location
-* Send your Location via GPS or something like that
+* Show live checkins on GoogleMaps
 
 
 
 ## Items
 ### ClientSide
-* html/templates/place-list.html
-* html/templates/place-list-item.html
-* html/templates/place-list.js
-* sass/mosules/place-list.scss
-* sass/mosules/place-list-item.scss
 
 ### ServerSide
-* main.js
-* methods/api-call.js
