@@ -1,0 +1,1 @@
+RealtimeCheckin = new Mongo.Collection('realtimeCheckin');

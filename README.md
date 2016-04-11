@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # The Core Feature
 In this branch, the Core idea or USP "Show the best places in the town your in" is developed.
 

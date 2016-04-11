@@ -1,1 +1,0 @@
-Places = new Mongo.Collection('now-popular');
