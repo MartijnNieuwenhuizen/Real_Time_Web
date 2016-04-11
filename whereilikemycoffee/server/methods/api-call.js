@@ -10,6 +10,7 @@ Meteor.methods({
 			BaseUrl: "https://api.foursquare.com/",
 			explore: "v2/venues/explore",
 			location: "ll=52.367153,4.893645",
+			// location: "ll=40.773122,-73.957780",
 			oath: "oauth_token=35PH4RM0KL4F5VJRXATA0UMJW20OGBNVLPTPKTNIEDKHDC4J&v=20160406",
 			query: "query=coffee",
 		}
