@@ -1,1 +1,1 @@
-RealtimeCheckin = new Mongo.Collection('realtimeCheckin');
+Locations = new Mongo.Collection('realtimeCheckin');

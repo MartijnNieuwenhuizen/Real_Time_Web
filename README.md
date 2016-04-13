@@ -4,7 +4,7 @@ In this branch, the real time checkin is created.
 ## ToDo
 ### HTML
 * Create templates:
-	* List to add checked in items
+	* ~~List to add checked in items~~
 	* Loop thrue all realtime Checkins
 
 ### CSS
