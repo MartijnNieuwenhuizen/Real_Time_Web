@@ -11,7 +11,7 @@ Meteor.methods({
 			explore: "v2/venues/explore",
 			location: "ll=52.367153,4.893645",
 			// location: "ll=40.773122,-73.957780",
-			oath: "oauth_token=35PH4RM0KL4F5VJRXATA0UMJW20OGBNVLPTPKTNIEDKHDC4J&v=20160406",
+			oath: "oauth_token=35PH4RM0KL4F5VJRXATA0UMJW20OGBNVLPTPKTNIEDKHDC4J&v=20160413",
 			query: "query=coffee",
 		}
 		apiUrl = url.BaseUrl + url.explore + "?" + url.location + "&" + url.oath;

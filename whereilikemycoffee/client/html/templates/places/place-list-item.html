@@ -1,6 +1,6 @@
 <template name="placeListItem">
-	
-	<li class="place-list--item" id={{id}}>
+
+	<li class="place-list--item" id={{id}} data-location-lat={{latLong.lat}} data-location-lng={{latLong.long}}>
 		<h2>{{name}}</h2>
 		<span class="rating">{{rating}}</span>
 		<span class="current-checkins">There are {{currentCheckings}} here</span>

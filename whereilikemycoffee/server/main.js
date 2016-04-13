@@ -39,16 +39,11 @@ Meteor.startup(() => {
 			places.forEach(function(place) {
 
 				var _this = place;
-				var checkID = places.findOne({id: _this.venue.id});
+				var checkID = Places.findOne({id: _this.venue.id});
 
 				if ( !checkID ) {
 
 					insertPlace(_this);
-
-				} else {
-
-					Places.remove(checkID); // Remove item
-					insertPlace(_this); // Reïnsert Item
 
 				}
 
