@@ -7,7 +7,7 @@ Template.map.helpers({
         if (GoogleMaps.loaded()) {
             return {
                 center: new google.maps.LatLng(52.367153, 4.893645),
-                zoom: 15
+                zoom: 16
             };
         }
     }
@@ -56,13 +56,16 @@ maps.setCheckinIcon = function(place) {
     
     var thisCurrentCheckings = _place.currentCheckings;
     var iconUrl;  
-    var iconBaseUrl = "http://martijnnieuwenhuizen.nl/esp/img/";
+    var iconBaseUrl = "./img/icons/";
     var iconType = {
         zero: "zero.svg",
-        one: "one.svg",
-        biggerThanOne: "bigger-than-one.svg",
-        biggerThanFive: "bigger-than-five.svg",
-        biggerThanTen: "bigger-than-ten.svg",
+        one: "1.svg",
+        two: "2.svg",
+        three: "3.svg",
+        four: "4.svg",
+        five: "5.svg",
+        biggerThanFive: "more-than-5.svg",
+        biggerThanTen: "more-than-10.svg"
     }
 
     if ( thisCurrentCheckings === 0 ) {
@@ -72,10 +75,22 @@ maps.setCheckinIcon = function(place) {
     } else if ( thisCurrentCheckings === 1 ) {
 
         iconUrl = iconBaseUrl + iconType.one;
+    
+    } else if ( thisCurrentCheckings === 2 ) {
 
-    } else if ( thisCurrentCheckings > 1 ) {
+        iconUrl = iconBaseUrl + iconType.two;
 
-        iconUrl = iconBaseUrl + iconType.biggerThanOne;
+    } else if ( thisCurrentCheckings === 3 ) {
+
+        iconUrl = iconBaseUrl + iconType.three;
+
+    } else if ( thisCurrentCheckings === 4 ) {
+
+        iconUrl = iconBaseUrl + iconType.four;
+
+    } else if ( thisCurrentCheckings === 5 ) {
+
+        iconUrl = iconBaseUrl + iconType.five;
 
     } else if ( thisCurrentCheckings > 5 ) {
         
@@ -86,6 +101,8 @@ maps.setCheckinIcon = function(place) {
         iconUrl = iconBaseUrl + iconType.biggerThanTen;
 
     };
+
+    console.log(iconUrl);
 
     return iconUrl;
 
@@ -129,6 +146,8 @@ maps.resetMarker = function (marker, map, newCheckinNumber) {
     _marker.currentCheckings = _newCheckinNumber;
     _marker.icon = maps.setCheckinIcon(place);
     _marker.setMap(_map.instance);
+
+    maps.notificationSound();
     
 }
 
@@ -146,6 +165,13 @@ maps.resetMarkerDemo = function (marker, map) {
     _marker.animation = google.maps.Animation.DROP;
     _marker.setMap(_map.instance);
     
+}
+
+maps.notificationSound = function() {
+
+    var notificationAudio = new Audio('./sounds/notification.mp3');
+    notificationAudio.play();
+
 }
 
 
@@ -170,6 +196,8 @@ Template.map.onCreated(function() {
                 if ( Places.findOne({_id: marker.id}) ) {
 
                     var thisMarkerInDb = Places.findOne({_id: marker.id});
+                    
+                    console.log("CHECKING");
 
                     if ( thisMarkerInDb.currentCheckings != marker.currentCheckings ) {
 
@@ -180,11 +208,10 @@ Template.map.onCreated(function() {
                         var newCheckinNumber = thisMarkerInDb.currentCheckings;
                         maps.resetMarker(marker, map, newCheckinNumber);
 
-
                     }
                 }
 
-            }, 10000);
+            }, 5000);
 
     	});
 
