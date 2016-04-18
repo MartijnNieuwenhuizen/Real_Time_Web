@@ -1,10 +1,12 @@
 Meteor.startup(function() {  
+
     GoogleMaps.load();
+    
 });
 
 Template.map.helpers({  
     mapOptions: function() {
-        if (GoogleMaps.loaded()) {
+        if ( GoogleMaps.loaded() ) {    
             return {
                 center: new google.maps.LatLng(52.367153, 4.893645),
                 zoom: 16
@@ -13,7 +15,29 @@ Template.map.helpers({
     }
 });
 
+var markers = [];
 var maps = {};
+
+maps.setNewCenter = function(map) {
+
+    var location = {};
+
+    Meteor.call('userLocation', function (error, result) { 
+
+        if (error) { console.log(error); } else {
+
+            console.dir(result);
+
+            location.lat = result.lat;
+            location.lng = result.lng;
+
+            map.setCenter(new google.maps.LatLng(location.lat, location.lng));
+
+        }
+
+    });
+
+}
 
 maps.setMarker = function(place, icon, map) {
 
@@ -31,6 +55,8 @@ maps.setMarker = function(place, icon, map) {
         icon: _icon,
         currentCheckings: _place.currentCheckings
     });     
+
+    markers.push(marker);
 
     return marker;     
 
@@ -92,7 +118,7 @@ maps.setCheckinIcon = function(place) {
 
         iconUrl = iconBaseUrl + iconType.five;
 
-    } else if ( thisCurrentCheckings > 5 ) {
+    } else if ( thisCurrentCheckings > 5 && thisCurrentCheckings <= 10 ) {
         
         iconUrl = iconBaseUrl + iconType.biggerThanFive;
 
@@ -101,8 +127,6 @@ maps.setCheckinIcon = function(place) {
         iconUrl = iconBaseUrl + iconType.biggerThanTen;
 
     };
-
-    console.log(iconUrl);
 
     return iconUrl;
 
@@ -174,11 +198,136 @@ maps.notificationSound = function() {
 
 }
 
+maps.setFilters = function() {
+        
+    var allButton = document.querySelector('.sidebar-choices .all');
+    var busyButton = document.querySelector('.sidebar-choices .busy');
+    var quietButton = document.querySelector('.sidebar-choices .quiet');
+
+    allButton.addEventListener('click', maps.showFilterResults, false);
+    busyButton.addEventListener('click', maps.showFilterResults, false);
+    quietButton.addEventListener('click', maps.showFilterResults, false);
+
+}
+
+maps.showSingleItem = function(item) {
+    
+    var _item = item;
+    item.classList.add("show");
+    item.classList.remove("hide");
+
+}
+
+maps.hideSingleItem = function(item) {
+    
+    var _item = item;
+    item.classList.add("hide");
+    item.classList.remove("show");
+
+}
+
+maps.showFilterSidebarResults = function(hash) {
+
+    var _hash = hash;
+    
+    var sidebarPlaces = document.querySelectorAll('.place-list--item');
+    Array.prototype.forEach.call(sidebarPlaces, function(sidebarPlace) {
+
+        var item = sidebarPlace;
+        var checkinData = item.dataset.currentCheckins;
+
+        if ( _hash === "busy" ) {
+            if ( checkinData >= 1 ) {
+                maps.showSingleItem(item);    
+            } else {
+                maps.hideSingleItem(item);
+            }
+        } else if ( _hash === "quiet" ) {
+            if ( checkinData < 1 ) {
+                maps.showSingleItem(item);
+            } else {
+                maps.hideSingleItem(item);
+            }
+        } else if ( _hash === "all" ) {
+            maps.showSingleItem(item);
+        }
+
+    });
+
+}
+
+maps.showFilterResults = function(hash) {
+
+    var _hash = window.location.hash.slice(1);
+    var checkValue;
+    var selectedPlaces = [];
+
+    if ( this.hash ) { 
+        _hash = this.hash.slice(1); 
+    }
+
+    maps.showFilterSidebarResults(_hash);
+
+    if ( _hash === "busy" ) {
+        checkValue = true;
+    } else if ( _hash === "quiet" ) {
+        checkValue = false;
+    } else if ( _hash === "all" ) {
+        
+        markers.forEach(function(spesificMarker) {
+
+            spesificMarker.setVisible(true);
+
+        });
+        return;
+
+    }
+    else {
+        markers.forEach(function(spesificMarker) {
+
+            spesificMarker.setVisible(true);
+
+        });
+        return;        
+    }
+
+    if ( Places.find({checkedIn: checkValue}) ) {
+
+        var busyPlaces = Places.find({checkedIn: checkValue}).fetch();
+        busyPlaces.forEach(function(item) {
+
+            placeId = item._id;
+            selectedPlaces.push(placeId);
+
+        });
+
+        markers.forEach(function(spesificMarker) {
+
+            markerId = spesificMarker.id;
+            
+            if ( selectedPlaces.indexOf(markerId) != -1 ) {
+
+                spesificMarker.setVisible(true);
+
+            } else {
+                        
+                spesificMarker.setVisible(false);
+
+            }
+
+        });
+            
+    }
+
+}
 
 
 Template.map.onCreated(function() {
 
   	GoogleMaps.ready('map', function(map) {
+
+        maps.setFilters();
+        maps.setNewCenter(map.instance);
     		
     	var allPlacesInDB = Places.find().fetch();
     	allPlacesInDB.forEach(function(singlePlace) {
@@ -203,7 +352,7 @@ Template.map.onCreated(function() {
 
                         console.log(marker.id, " needs a change");
                         console.log(marker.id, " current: ", marker.currentCheckings);
-                        console.log(marker.id, " current: ", thisMarkerInDb.currentCheckings);
+                        console.log(marker.id, " new: ", thisMarkerInDb.currentCheckings);
 
                         var newCheckinNumber = thisMarkerInDb.currentCheckings;
                         maps.resetMarker(marker, map, newCheckinNumber);
@@ -214,6 +363,8 @@ Template.map.onCreated(function() {
             }, 5000);
 
     	});
+
+        maps.showFilterResults();
 
     });
 

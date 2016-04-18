@@ -1,0 +1,19 @@
+<template name="placeListItem">
+
+	<li class="place-list--item" id={{id}} data-current-checkins="{{currentCheckings}}">
+		<header>
+			<h2>{{name}}</h2>
+			<span class="rating">{{rating}}</span>	
+		</header>
+		<ul class="detail-info-list">
+			<li class="current-checkins"><img src="/img/icons/people.svg" class="person" alt="P:"> <span>{{currentCheckings}}</span></li>
+			{{#if url}}
+				<li><img src="/img/icons/web.svg" class="web" alt="W:"><a href="{{url}}">{{url}}</a></li>
+			{{else}}
+				<li><img src="/img/icons/web.svg" class="web" alt="W:"><span>no link known</span></li>
+			{{/if}}
+			<li class="adress"><img src="/img/icons/location.svg" class="location" alt="L:"> <span>{{adress.street}}</span></li>
+		</ul>
+	</li>
+
+</template>

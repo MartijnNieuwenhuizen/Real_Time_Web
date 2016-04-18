@@ -1,13 +1,13 @@
 export var foursquare = {};
 
-foursquare.apiCall = function() {
+foursquare.apiCall = function(location) {
 	
 	// Create Url
 	var apiUrl;
 	var url = {
 		BaseUrl: "https://api.foursquare.com/",
 		explore: "v2/venues/explore",
-		location: "ll=52.367153,4.893645",
+		location: "ll=" + location.lat + "," + location.lng,
 		// location: "ll=40.773122,-73.957780",
 		oath: "oauth_token=35PH4RM0KL4F5VJRXATA0UMJW20OGBNVLPTPKTNIEDKHDC4J&v=20160413",
 		query: "query=coffee",
@@ -46,12 +46,7 @@ foursquare.insertPlace = function(place) {
 		url: _place.venue.url,
 		// currentCheckings: _place.venue.hereNow.count,
 		currentCheckings: _place.venue.hereNow.count,
-		checkedIn: function() {
-			if( _place.venue.hereNow.count != 0 ) {
-				return "true"
-			}
-			
-		}
+		checkedIn: (_place.venue.hereNow.count > 0) ? true : false // Thx Cas for this inline if-statement
 	});	
 
 }
@@ -82,12 +77,7 @@ foursquare.updatePlace = function(place, newCheckinCount, dbId) {
 		rating: _place.venue.rating,
 		url: _place.venue.url,
 		currentCheckings: _newCheckinCount,
-		checkedIn: function() {
-			if( _newCheckinCount != 0 ) {
-				return "true"
-			}
-			
-		}
+		checkedIn: (_newCheckinCount > 0) ? true : false
 	});	
 
 }
@@ -110,8 +100,25 @@ foursquare.checkCurrentCheckins = function(place, checkID) {
 }
 
 foursquare.setData = function() {
+
+	var location = {};
+
+	Meteor.call('userLocation', function (error, result) { 
+
+		if (error) {
+
+			console.log(error);
+
+		} else {	
+
+			location.lat = result.lat;
+			location.lng = result.lng;
+
+		}
+
+	});
 	
-	var data = foursquare.apiCall();
+	var data = foursquare.apiCall(location);
 	var places = data.response.groups[0].items; 
 
 	places.forEach(function(place) {
