@@ -1,0 +1,1 @@
+DetailPlace = new Mongo.Collection('detailPlace');

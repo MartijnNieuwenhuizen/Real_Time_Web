@@ -22,3 +22,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 fourseven:scss
 http
 iron:router
+dburles:google-maps
+session

@@ -1,0 +1,15 @@
+<template name="detailPlaceItem">
+	
+	<li class="detail-place--item">
+		<h2> {{name}}</h2>
+		<span> {{rating}}</span>
+		<span>{{currentCheckings}}</span>
+		<a href="{{url}}">Link to the website</a>
+		<div class="adress">
+			<p class="distance">{{adress.distance}}</p>
+			<p class="street">{{adress.street}}</p>
+			<p class="cite">{{adress.city}}</p>
+		</div>
+	</li>
+
+</template>

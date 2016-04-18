@@ -1,0 +1,27 @@
+<template name="detailPlace">
+
+	<aside class="sidebar" id={{id}}>
+	<!-- <ul>
+		{{#each place}}
+			{{}}
+		{{/each}}		
+	</ul> -->
+
+		{{#each place}}
+			{{#if pla}}
+				<div>
+					<h2> {{name}}</h2>
+					<span> {{rating}}</span>
+					<span>{{currentCheckings}}</span>
+					<a href="{{url}}">Link to the website</a>
+					<div class="adress">
+						<p class="distance">{{adress.distance}}</p>
+						<p class="street">{{adress.street}}</p>
+						<p class="cite">{{adress.city}}</p>
+					</div>
+				</div>
+			{{/if}}
+		{{/each}}
+	</aside>
+
+</template>
