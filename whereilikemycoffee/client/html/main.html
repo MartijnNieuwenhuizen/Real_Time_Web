@@ -2,7 +2,7 @@
 
 	<head>
 	    
-	    <title>Realtime Garden</title>
+	    <title>Where I Like My Coffee</title>
 
 	    <meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,12 +10,22 @@
 	</head>
 
 	<body>
-	    <!-- {{> header}} -->
 
-	    <main>
-			{{> placeList}}
+	    <main class="home">
 
-			{{> map}}
+	    	<h1>Where I Like My Coffee</h1>
+
+	    	<img src="/img/coffee.svg" alt="Coffee Icon">
+
+			<nav>
+				<ul class="main-nav">
+					<li><a href="/now-popular" class="disabled">Now Popular</a></li>
+					<li><a href="/your-favorites" class="disabled">Your Favorites</a></li>
+					<li><a href="/nearby-places">Nearby Places</a></li>
+					<li><a href="/friends" class="disabled">Where your friends drink</a></li>
+				</ul>
+			</nav>
+
 	    </main>
 
 	</body>
