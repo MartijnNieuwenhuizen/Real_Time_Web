@@ -6,7 +6,7 @@ Meteor.startup(function() {
 
 Template.map.helpers({  
     mapOptions: function() {
-        if ( GoogleMaps.loaded() ) {    
+        if ( GoogleMaps.loaded() ) {  
             return {
                 center: new google.maps.LatLng(52.367153, 4.893645),
                 zoom: 16
@@ -18,24 +18,46 @@ Template.map.helpers({
 var markers = [];
 var maps = {};
 
-maps.setNewCenter = function(map) {
+maps.activateMethod = function(map) {
 
-    var location = {};
-
-    Meteor.call('userLocation', function (error, result) { 
-
-        if (error) { console.log(error); } else {
-
-            console.dir(result);
-
-            location.lat = result.lat;
-            location.lng = result.lng;
-
-            map.setCenter(new google.maps.LatLng(location.lat, location.lng));
-
+    Meteor.setTimeout(function() {
+        var userPosition = {};
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        function showPosition(position) {
+            userPosition.lat = position.coords.latitude;
+            userPosition.lng = position.coords.longitude;
         }
 
-    });
+        // Do the Api Call and send the userLocation as a parameter
+        Meteor.setTimeout(function() {
+
+            Session.set("userPosLat", userPosition.lat);
+            Session.set("userPosLng", userPosition.lng);
+
+            map.setCenter(new google.maps.LatLng(userPosition.lat, userPosition.lng));
+
+            Meteor.apply('apiCall', [userPosition], true, function(error, result){
+            if (error) { console.log(error); } else {
+
+                // console.dir(result);
+
+            }
+        });
+        }, 1000);  
+
+        Meteor.setInterval(function() {
+            Meteor.apply('apiCall', [userPosition], true, function(error, result){
+                if (error) { console.log(error); } else {
+
+                    // console.dir(result);
+
+                }
+            });
+        }, 10000) 
+
+    }, 500);
 
 }
 
@@ -327,42 +349,47 @@ Template.map.onCreated(function() {
   	GoogleMaps.ready('map', function(map) {
 
         maps.setFilters();
-        maps.setNewCenter(map.instance);
-    		
-    	var allPlacesInDB = Places.find().fetch();
-    	allPlacesInDB.forEach(function(singlePlace) {
+        maps.activateMethod(map.instance);
 
-    	    var _thisPlace = singlePlace;
+        Meteor.setTimeout(function() {
+            var currentLat = Session.get("userPosLat");
+            var currentLng = Session.get("userPosLng");
+            
+            var allPlacesInDB = Places.find().fetch();
+            allPlacesInDB.forEach(function(singlePlace) {
 
-            var infoWindow = maps.setInfoWindow(_thisPlace, marker);
-            var iconUrl = maps.setCheckinIcon(_thisPlace);
-            var marker = maps.setMarker(_thisPlace, iconUrl, map);
+                var _thisPlace = singlePlace;
 
-            maps.addListeners(marker, infoWindow, map);
+                var infoWindow = maps.setInfoWindow(_thisPlace, marker);
+                var iconUrl = maps.setCheckinIcon(_thisPlace);
+                var marker = maps.setMarker(_thisPlace, iconUrl, map);
 
-            Meteor.setInterval(function() {
+                maps.addListeners(marker, infoWindow, map);
 
-                if ( Places.findOne({_id: marker.id}) ) {
+                Meteor.setInterval(function() {
 
-                    var thisMarkerInDb = Places.findOne({_id: marker.id});
-                    
-                    console.log("CHECKING");
+                    if ( Places.findOne({_id: marker.id}) ) {
 
-                    if ( thisMarkerInDb.currentCheckings != marker.currentCheckings ) {
+                        var thisMarkerInDb = Places.findOne({_id: marker.id});
+                        
+                        // console.log("CHECKING");
 
-                        console.log(marker.id, " needs a change");
-                        console.log(marker.id, " current: ", marker.currentCheckings);
-                        console.log(marker.id, " new: ", thisMarkerInDb.currentCheckings);
+                        if ( thisMarkerInDb.currentCheckings != marker.currentCheckings ) {
 
-                        var newCheckinNumber = thisMarkerInDb.currentCheckings;
-                        maps.resetMarker(marker, map, newCheckinNumber);
+                            // console.log(marker.id, " needs a change");
+                            // console.log(marker.id, " current: ", marker.currentCheckings);
+                            // console.log(marker.id, " new: ", thisMarkerInDb.currentCheckings);
 
+                            var newCheckinNumber = thisMarkerInDb.currentCheckings;
+                            maps.resetMarker(marker, map, newCheckinNumber);
+
+                        }
                     }
-                }
 
-            }, 5000);
+                }, 5000);
 
-    	});
+            });
+        }, 1500);
 
         maps.showFilterResults();
 
