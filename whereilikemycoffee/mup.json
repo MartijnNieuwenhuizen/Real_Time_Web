@@ -1,0 +1,19 @@
+{
+  "servers": [
+    {
+      "host": "37.139.1.104",
+      "username": "root",
+      "env": {}
+    }
+  ],
+  "setupMongo": true,
+  "appName": "WhereILikeMyCoffee",
+  "app": ".",
+  "env": {
+    "PORT": 80,
+    "ROOT_URL": "http://37.139.1.104",
+    "MONGO_URL": ""
+  },
+  "deployCheckWaitTime": 60,
+  "enableUploadProgressBar": true
+}

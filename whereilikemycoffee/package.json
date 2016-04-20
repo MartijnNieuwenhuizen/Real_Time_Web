@@ -1,5 +1,5 @@
 {
-  "name": "realtime_garden",
+  "name": "whereILikeMyCoffee",
   "private": true,
   "scripts": {
     "start": "meteor run"
