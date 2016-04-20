@@ -1,57 +1,57 @@
-Meteor.methods({
-    'userLocation': function(){
+// Meteor.methods({
+//     'userLocation': function(){
 
-        var userPosition = {
-            lat: 52.367153,
-            lng: 4.893645
-        };
-        // var userPosition = {
-        //     lat: 40.773122,
-        //     lng: -73.957780
-        // };
+//         var userPosition = {
+//             lat: 52.367153,
+//             lng: 4.893645
+//         };
+//         // var userPosition = {
+//         //     lat: 40.773122,
+//         //     lng: -73.957780
+//         // };
       
-        if ( Meteor.isClient ) {
+//         if ( Meteor.isClient ) {
 
-            try {
-                return new Promise(function(resolve, reject) {
+//             try {
+//                 return new Promise(function(resolve, reject) {
 
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(showPosition);
-                    }
-                    function showPosition(position) {
-                        userPosition.lat = position.coords.latitude;
-                        userPosition.lng = position.coords.longitude;
+//                     if (navigator.geolocation) {
+//                         navigator.geolocation.getCurrentPosition(showPosition);
+//                     }
+//                     function showPosition(position) {
+//                         userPosition.lat = position.coords.latitude;
+//                         userPosition.lng = position.coords.longitude;
 
-                        console.log(userPosition);
+//                         console.log(userPosition);
 
-                        Meteor.setTimeout(function() {
-                            resolve(userPosition);
-                        }, 500);
-                    }               
+//                         Meteor.setTimeout(function() {
+//                             resolve(userPosition);
+//                         }, 500);
+//                     }               
 
-                });
+//                 });
 
-            } catch (error) { 
+//             } catch (error) { 
             
-                return error; 
+//                 return error; 
 
-            }
+//             }
 
-        }
+//         }
 
-        if ( Meteor.isServer ) {
+//         if ( Meteor.isServer ) {
 
-            try {
+//             try {
                 
-                return userPosition;
+//                 return userPosition;
 
-            } catch (error) { 
+//             } catch (error) { 
             
-                return error; 
+//                 return error; 
 
-            }
+//             }
 
-        }
+//         }
 
-    }
-});
+//     }
+// });

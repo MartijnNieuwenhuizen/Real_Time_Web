@@ -23,12 +23,16 @@ Meteor.methods({
 				var _location = userPosition;
 				var places = _result.response.groups[0].items; 
 
+				console.log("Checking");
+
 				places.forEach(function(place) {
 
 					var _place = place; // The item form the api Call
 					var checkID = Places.findOne({id: _place.venue.id}); // the item form the DB
 						
 					if ( !checkID ) {
+
+						console.log("New Place");
 						
 						Places.insert({
 							name: _place.venue.name,

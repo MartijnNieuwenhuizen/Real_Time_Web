@@ -354,7 +354,7 @@ Template.map.onCreated(function() {
         Meteor.setTimeout(function() {
             var currentLat = Session.get("userPosLat");
             var currentLng = Session.get("userPosLng");
-            
+
             var allPlacesInDB = Places.find().fetch();
             allPlacesInDB.forEach(function(singlePlace) {
 
