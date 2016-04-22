@@ -3,6 +3,8 @@
 Where I Like My Coffee is an App that shows you the best coffee places in town and let you discover the city by a view cups of coffee. The feature that distinguishes it with other coffee ranking sites is the real-time feature. This feature uses the Foursquare API (later other data sources will be added) to show you which places/parts of the city are busy.
 This concept can later be transferred to show your where to drink a Beer, and so on.
 
+Check the site live at [www.whereilikemycoffee.com](http://146.185.144.54/)
+
 **Possible features are:**
 Show real-time login from people to a new place on Google Maps.
 Add 3th party data from other Coffee Ranking sites
@@ -24,6 +26,8 @@ The Foursquere API is now used to generate this data, unfortunately the Instagra
 * feature/places [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
 * feature/google-maps [Show all the places on the map and the realtime checkins with Foursquere](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/google-maps)
 * Server [The code running on the Digital Ocean server](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
+
+
 
 # Setup
 	* CLIENT
