@@ -40,7 +40,7 @@ The Foursquere API is now used to generate this data, unfortunately the Instagra
 				* nearby-places
 		
 		* sass
-			* base // contains all the basic styling elements
+			* base
 				* colors
 				* layout
 				* typografie
