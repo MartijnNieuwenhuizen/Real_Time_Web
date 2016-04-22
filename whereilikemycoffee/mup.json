@@ -1,0 +1,23 @@
+{
+  "servers": [
+    {
+      "host": "146.185.144.54",
+      "username": "root",
+      //"pem": "~/.ssh/github_rsa",
+      "env": {}
+    }
+  ],
+
+  "setupMongo": true,
+
+  //"appName": "meteor-app",
+  "app": ".",
+
+  "env": {
+    "PORT": 80,
+    "ROOT_URL": "http://146.185.144.54",
+    "MONGO_URL": ""
+  },
+  "deployCheckWaitTime": 60,
+  "enableUploadProgressBar": true
+}

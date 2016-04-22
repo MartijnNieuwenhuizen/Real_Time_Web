@@ -1,0 +1,11 @@
+.place-list {
+	margin: 0;
+	padding: 0em;
+
+  	margin-top: 4.3em;
+	width: 14em;
+  	@media( min-width: 400px ) {
+  		width: 20em;
+  		margin-top: 2.7em;
+  	}
+}

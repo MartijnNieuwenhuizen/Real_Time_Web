@@ -1,0 +1,41 @@
+<template name="placeList">
+
+	<aside class="sidebar">
+		<ul class="sidebar-choices">
+			<li class="sidebar-choices--item"><a class="all" href="#all">All Places</a></li>
+			<li class="sidebar-choices--item"><a class="busy" href="#busy">Busy Places</a></li>
+			<li class="sidebar-choices--item"><a class="quiet" href="#quiet">Quiet Places</a></li>
+		</ul>
+
+		<!-- {{#if place.checkedIn}} -->
+		
+			<ul class="place-list">
+				{{#each place}}
+					{{> placeListItem}}
+				{{/each}}
+			</ul>
+
+		<!-- {{/if}} -->
+		<!-- {{#if place.checkedIn}}
+			
+			<h2>Busy Places</h2>
+			<ul class="place-list">
+				{{#each place}}
+					{{> placeListItem}}
+				{{/each}}
+			</ul>
+
+		{{/if}}
+			
+			<h2>Empty Places</h2>
+			<ul class="place-list">
+				{{#each place}}
+					{{> placeListItem}}
+				{{/each}}
+			</ul>
+
+		{{/if}} -->
+		
+	</aside>
+
+</template>

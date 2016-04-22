@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+// import { foursquare } from './modules/api-call';
 
 Meteor.startup(() => {
-  // code to run on server at startup
+
 });

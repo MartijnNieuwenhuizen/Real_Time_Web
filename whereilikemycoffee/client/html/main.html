@@ -1,26 +1,33 @@
-<head>
-    <title>Realtime Garden</title>
-</head>
+<template name="main">
 
-<body>
-    <header>
-        {{> user}}
-        <nav>
-            <ul>
-                <li>Home</li>
-                <li>All Gardens</li>
-            </ul>
-        </nav>
-    </header>
+	<head>
+	    
+	    <title>Where I Like My Coffee</title>
 
-    <main>
-        <!-- if there is a garden -->
-        {{> measurePart}}
+	    <meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-        <!-- else -->
-    </main>
+	</head>
 
-    <footer>
-        
-    </footer>
-</body>
+	<body>
+
+	    <main class="home">
+
+	    	<h1>Where I Like My Coffee</h1>
+
+	    	<img src="/img/coffee.svg" alt="Coffee Icon">
+
+			<nav>
+				<ul class="main-nav">
+					<li><a href="/now-popular" class="disabled">Now Popular</a></li>
+					<li><a href="/your-favorites" class="disabled">Your Favorites</a></li>
+					<li><a href="/nearby-places">Nearby Places</a></li>
+					<li><a href="/friends" class="disabled">Where your friends drink</a></li>
+				</ul>
+			</nav>
+
+	    </main>
+
+	</body>
+
+</template>

@@ -22,3 +22,26 @@ The Core idea or USP is "Show the best places in the town your in". This is bein
 * feature/places [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
 * feature/google-maps [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/google-maps)
 * Server [The code running on the Digital Ocean server](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
+
+# Setup
+## client
+*html*
+	
+	* views/template
+		* map 
+		* places
+
+Every template has a own map, named after the template. Every map contains a/multiple html file(s) and a js file. They are combined becuase they both generate the contend in a template. The sass is seperated because this generates no content.
+
+
+*sass*
+
+	* base
+	* components
+	* modules
+
+## public
+
+
+## server
+

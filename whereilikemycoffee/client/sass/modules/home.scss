@@ -1,0 +1,16 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		max-width: 30vw;
+		margin-top: 5em;
+
+		@media(min-width: 500px) {
+			margin-top: 1em;
+		}
+	}	
+}

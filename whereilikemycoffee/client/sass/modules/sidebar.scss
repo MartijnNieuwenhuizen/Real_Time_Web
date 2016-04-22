@@ -1,0 +1,26 @@
+@keyframes slide-in {
+	0% {
+		transform: translateX(-24.6vw);
+	}
+	50% {
+		transform: translateX(-24.6vw);
+	}
+	100% {
+		transform: translateX(0vw);	
+	}
+}
+
+.sidebar {
+	position: fixed;
+	background-color: white;
+	z-index: 999;
+	height: 100vh;
+	overflow-y: scroll;
+	animation: slide-in .5s;
+	box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+
+	width: 14em;
+  	@media( min-width: 400px ) {
+  		width: 20em;
+  	}
+}
