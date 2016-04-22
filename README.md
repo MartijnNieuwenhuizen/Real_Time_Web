@@ -18,4 +18,7 @@ The Core idea or USP is "Show the best places in the town your in". This is bein
 ![Roadmap](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/blob/feature/places/readme_images/roadmap.jpg "Roadmap")
 
 ### Branches
-* Core Feature [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
+* feature/realtime-checkin [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/realtime-checkin)
+* feature/places [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
+* feature/google-maps [Show all the places](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/google-maps)
+* Server [The code running on the Digital Ocean server](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
