@@ -26,39 +26,40 @@ The Foursquere API is now used to generate this data, unfortunately the Instagra
 * Server [The code running on the Digital Ocean server](https://github.com/MartijnNieuwenhuizen/Real_Time_Web/tree/feature/places)
 
 # Setup
-	* html
-		* views
-			* base
-			* map 
-			* places
-				* place-list-item.html
-				* place-list.html
-				* place-list.js
-				
-		* pages
-			* nearby-places
-	
-	* sass
-		* base // contains all the basic styling elements
-			* colors
-			* layout
-			* typografie
+	* CLIENT
+		* html
+			* views
+				* base
+				* map 
+				* places
+					* place-list-item.html
+					* place-list.html
+					* place-list.js
+					
+			* pages
+				* nearby-places
+		
+		* sass
+			* base // contains all the basic styling elements
+				* colors
+				* layout
+				* typografie
 
-		* components
-			* links
-			* lists
+			* components
+				* links
+				* lists
 
-		* modules
-			* home
-			* js
-			* main-nav
-			* map-container
-			* place-list
-			* place-list--item
-			* sidebar
-			* sidebar--choices
+			* modules
+				* home
+				* js
+				* main-nav
+				* map-container
+				* place-list
+				* place-list--item
+				* sidebar
+				* sidebar--choices
 
-	* lib
+	* LIB
 		* collections
 			* places
 
@@ -68,13 +69,13 @@ The Foursquere API is now used to generate this data, unfortunately the Instagra
 		* router
 			routers
 
-	* public
+	* PUBLIC
 		* img
 			* icons
 
 		* sounds
 
-	* server
+	* SERVER
 		* main
 
 
